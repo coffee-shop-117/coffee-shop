@@ -1,0 +1,39 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  min-height: 54px;
+  padding: 15px 23px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 140ms var(--ease-out);
+}
+.solid {
+  background: var(--milk);
+  color: var(--charcoal);
+}
+.outline {
+  border-color: var(--line-strong);
+  color: var(--milk);
+}
+.button:active {
+  transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+  .solid:hover {
+    background: var(--sage);
+  }
+  .outline:hover {
+    background: var(--surface);
+  }
+}
+.button:focus-visible {
+  transition: none;
+  transform: none;
+}

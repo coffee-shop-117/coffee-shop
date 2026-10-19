@@ -1,0 +1,310 @@
+.hero {
+  overflow: clip;
+}
+.main {
+  display: grid;
+  grid-template-columns: 1.04fr 1fr;
+  gap: 6%;
+  padding-top: 55px;
+  padding-bottom: 55px;
+  min-height: 650px;
+}
+.copy {
+  align-self: center;
+  padding: 30px 0;
+}
+.intro {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+.intro > span {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--sage);
+}
+.copy h1 {
+  font-size: clamp(54px, 6.6vw, 100px);
+  font-weight: 450;
+  line-height: 1.06;
+  letter-spacing: -0.065em;
+}
+.description {
+  max-width: 330px;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--muted);
+  margin: 26px 0 30px;
+}
+.actions {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.route {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-size: 14px;
+}
+.note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 50px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.visual {
+  --hero-drift: 24px;
+  --hero-tilt: 2deg;
+  --hero-zoom: 1.2;
+  --hero-image-y: -16px;
+  --hero-stamp-y: -24px;
+  --hero-stamp-turn: 14deg;
+  position: relative;
+  min-width: 0;
+  min-height: 520px;
+}
+.photo {
+  position: absolute;
+  inset: 0 0 30px;
+  overflow: hidden;
+  border-radius: 48% 48% 8px 8px;
+  background: var(--surface);
+}
+.photo img {
+  object-fit: cover;
+  object-position: 48% 44%;
+  filter: brightness(0.84) saturate(0.65);
+}
+.stamp {
+  position: absolute;
+  top: 31px;
+  left: -37px;
+  height: 104px;
+  width: 104px;
+  border-radius: 50%;
+  background: var(--sage);
+  color: var(--charcoal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transform: rotate(-12deg);
+  box-shadow: 0 0 0 7px var(--charcoal);
+}
+.stamp span {
+  font-size: 14px;
+  font-weight: 600;
+}
+.stamp small {
+  font-size: 14px;
+}
+.caption {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.bottom {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  font-size: 14px;
+}
+.bottom > a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hours {
+  color: var(--muted);
+}
+.hours span {
+  color: var(--milk);
+  margin-left: 12px;
+}
+.rating > span:first-child {
+  font-size: 19px;
+  font-weight: 650;
+}
+.stars {
+  color: var(--sage);
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+.rating > span:last-child {
+  color: var(--muted);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .visual[data-scroll-motion="native"] .photo {
+    animation: frame-drift linear both;
+    animation-timeline: scroll(root block);
+    animation-range: var(--hero-scroll-start) var(--hero-scroll-end);
+  }
+  .visual[data-scroll-motion="native"] .photo img {
+    animation: image-zoom linear both;
+    animation-timeline: scroll(root block);
+    animation-range: var(--hero-scroll-start) var(--hero-scroll-end);
+  }
+  .visual[data-scroll-motion="native"] .stamp {
+    animation: stamp-drift linear both;
+    animation-timeline: scroll(root block);
+    animation-range: var(--hero-scroll-start) var(--hero-scroll-end);
+  }
+  @keyframes frame-drift {
+    from { transform: translate3d(0, 0, 0) rotate(0); }
+    to { transform: translate3d(0, var(--hero-drift), 0) rotate(var(--hero-tilt)); }
+  }
+  @keyframes image-zoom {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(0, var(--hero-image-y), 0) scale(var(--hero-zoom)); }
+  }
+  @keyframes stamp-drift {
+    from { transform: translate3d(0, 0, 0) rotate(-12deg); }
+    to { transform: translate3d(0, var(--hero-stamp-y), 0) rotate(var(--hero-stamp-turn)); }
+  }
+  .copy {
+    animation: appear 850ms var(--ease-out) both;
+  }
+  .visual {
+    animation: appear 1100ms var(--ease-out) both;
+  }
+  @keyframes appear {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+@media (max-width: 1000px) {
+  .main {
+    gap: 5%;
+    min-height: auto;
+  }
+  .visual {
+    min-height: 460px;
+  }
+  .actions {
+    gap: 20px;
+  }
+  .route {
+    font-size: 14px;
+  }
+  .copy h1 {
+    font-size: 64px;
+  }
+  .intro {
+    font-size: 14px;
+  }
+  .stamp {
+    width: 85px;
+    height: 85px;
+    left: -20px;
+  }
+  .hours {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .main {
+    grid-template-columns: 1fr;
+    padding-top: 10px;
+    gap: 28px;
+    padding-bottom: 30px;
+  }
+  .copy {
+    padding-top: 28px;
+    padding-bottom: 0;
+  }
+  .intro {
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  .copy h1 {
+    font-size: clamp(55px, 12vw, 79px);
+  }
+  .description {
+    margin-top: 22px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    max-width: 300px;
+  }
+  .actions {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .actions > a:first-child {
+    flex-shrink: 0;
+    gap: 18px;
+    padding-inline: 18px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .route {
+    gap: 9px;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+  .note {
+    margin-top: 25px;
+    font-size: 14px;
+  }
+  .visual {
+    --hero-drift: 14.4px;
+    --hero-tilt: 1.2deg;
+    --hero-zoom: 1.12;
+    --hero-image-y: -9.6px;
+    --hero-stamp-y: -14.4px;
+    --hero-stamp-turn: 3.6deg;
+    min-height: 410px;
+    margin-left: 25px;
+    margin-right: 0;
+  }
+  .photo {
+    border-radius: 45% 45% 6px 6px;
+    bottom: 25px;
+  }
+  .photo img {
+    object-position: center 50%;
+  }
+  .stamp {
+    left: -25px;
+    top: 22px;
+    width: 90px;
+    height: 90px;
+  }
+  .bottom {
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .bottom > a {
+    gap: 8px;
+  }
+  .rating > span:last-child {
+    font-size: 14px;
+  }
+  .stars {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+}

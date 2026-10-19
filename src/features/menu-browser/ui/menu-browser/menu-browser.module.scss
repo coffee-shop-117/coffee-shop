@@ -1,0 +1,172 @@
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0 0 30px;
+}
+.filters button {
+  min-height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50px;
+  padding: 11px 19px;
+  background: none;
+  font-size: 14px;
+  white-space: nowrap;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 130ms var(--ease-out);
+}
+.filters button[aria-pressed="true"] {
+  background: var(--milk);
+  border-color: var(--milk);
+  color: var(--charcoal);
+}
+.filters button:active {
+  transform: scale(0.97);
+}
+.filters button:focus-visible {
+  transition: none;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 34px 20px;
+}
+.more {
+  display: flex;
+  justify-content: center;
+  margin-top: 38px;
+}
+.more button {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  background: none;
+  border: 1px solid var(--line-strong);
+  border-radius: 5px;
+  padding: 12px 22px;
+  font-size: 14px;
+  transition:
+    background-color 160ms ease,
+    transform 140ms var(--ease-out);
+}
+.more button span {
+  font-size: 13px;
+  color: var(--muted);
+}
+.more button:active {
+  transform: scale(0.97);
+}
+.note {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: min(560px, calc(100% - 32px));
+  max-height: 88dvh;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--charcoal);
+  color: var(--milk);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.dialog::backdrop {
+  background: rgb(0 0 0 / 0.78);
+}
+.close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  height: 40px;
+  width: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--charcoal);
+}
+.dialogImage {
+  position: relative;
+  aspect-ratio: 1.5;
+}
+.dialogImage img {
+  object-fit: cover;
+}
+.dialogCopy {
+  padding: 28px;
+}
+.dialogCopy > p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+.dialogCopy > p:first-child {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.dialogCopy h2 {
+  font-size: 30px;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+.dialogCopy strong {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.dialogCopy a {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 24px;
+  font-size: 14px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .more button:hover,
+  .filters button:not([aria-pressed="true"]):hover {
+    background: var(--surface);
+  }
+}
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 18px;
+  }
+}
+@media (max-width: 600px) {
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-right: calc(var(--gutter) * -1);
+    padding-right: var(--gutter);
+    padding-bottom: 24px;
+    scrollbar-width: none;
+  }
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+  .filters button {
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+  .grid {
+    gap: 26px 12px;
+  }
+  .dialogCopy {
+    padding: 24px;
+  }
+  .dialogCopy h2 {
+    font-size: 26px;
+  }
+}
